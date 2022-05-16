@@ -1,6 +1,14 @@
+/*
+ * @Description:
+ * @Version: 2.0
+ * @Autor: Marvin
+ * @Date: 2022-05-15 13:35:28
+ * @LastEditors: Marvin
+ * @LastEditTime: 2022-05-15 16:18:46
+ */
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: '人力资源管理平台',
 
   /**
    * @type {boolean} true | false
