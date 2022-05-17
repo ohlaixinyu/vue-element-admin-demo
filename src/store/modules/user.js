@@ -4,10 +4,10 @@
  * @Autor: Marvin
  * @Date: 2022-05-15 13:35:28
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-17 17:42:06
+ * @LastEditTime: 2022-05-17 18:34:16
  */
 
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, setTimeStamp } from '@/utils/auth'
 import { login, getUserInfo, getUserDetailById } from '@/api/user.js'
 
 const state = {
@@ -36,6 +36,8 @@ const actions = {
   async login(context, data) {
     const res = await login(data)
     context.commit('setToken', res)
+    // 拿到token说明登录成功
+    setTimeStamp()
   },
 
   // 获取用户信息
@@ -47,6 +49,11 @@ const actions = {
     const baseResult = { ...res, ...baseInfo }
     context.commit('setUserInfo', baseResult)
     return res // 这里是给我们做权限的时候留下伏笔
+  },
+  // 登出操作
+  logout(context) {
+    context.commit('removeToken') // 不仅删除Vuex中的 还删除了缓存中的
+    context.commit('removeUserInfo')
   }
 }
 
