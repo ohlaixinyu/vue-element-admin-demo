@@ -4,16 +4,31 @@
  * @Autor: Marvin
  * @Date: 2022-05-15 13:35:28
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-16 15:38:05
+ * @LastEditTime: 2022-05-17 15:46:25
  */
 import axios from 'axios'
 import { Message } from 'element-ui'
+import store from '@/store'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // 设置基础地址
   timeout: 5000 // 设置超时时间
 })
-service.interceptors.request.use()
+
+// 请求拦截器
+service.interceptors.request.use(
+  config => {
+    // 注入token
+    // 判断sotre下的token是否存在
+    if (store.getters.token) {
+      config.headers['Authorization'] = `Bearer ${store.getters.token}`
+    }
+    return config // 必须要返回
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
 
 // 响应拦截器
 service.interceptors.response.use(

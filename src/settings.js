@@ -4,7 +4,7 @@
  * @Autor: Marvin
  * @Date: 2022-05-15 13:35:28
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-15 16:18:46
+ * @LastEditTime: 2022-05-17 15:21:40
  */
 module.exports = {
 
@@ -20,5 +20,5 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
+  sidebarLogo: true
 }
