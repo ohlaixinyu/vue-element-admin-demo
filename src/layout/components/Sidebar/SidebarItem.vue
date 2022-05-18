@@ -1,3 +1,11 @@
+<!--
+ * @Description:
+ * @Version: 2.0
+ * @Autor: Marvin
+ * @Date: 2022-05-15 13:35:28
+ * @LastEditors: Marvin
+ * @LastEditTime: 2022-05-18 16:06:28
+-->
 <template>
   <div v-if="!item.hidden">
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
@@ -8,7 +16,7 @@
       </app-link>
     </template>
 
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <!-- <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
@@ -20,7 +28,7 @@
         :base-path="resolvePath(child.path)"
         class="nest-menu"
       />
-    </el-submenu>
+    </el-submenu> -->
   </div>
 </template>
 
