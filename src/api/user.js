@@ -4,7 +4,7 @@
  * @Autor: Marvin
  * @Date: 2022-05-15 13:35:28
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-17 17:38:01
+ * @LastEditTime: 2022-05-28 09:52:17
  */
 import request from '@/utils/request'
 
@@ -28,7 +28,4 @@ export function getUserDetailById(id) {
   return request({
     url: `/sys/user/${id}`
   })
-}
-export function logout() {
-
 }

@@ -1,28 +1,50 @@
-/*
- * @Description:
- * @Version: 2.0
- * @Autor: Marvin
- * @Date: 2022-05-18 14:18:58
- * @LastEditors: Marvin
- * @LastEditTime: 2022-05-18 16:10:28
- */
-// 导出员工的路由规则
+
 import Layout from '@/layout'
+
 export default {
-  // 路由规则
-  path: '/social',
-  name: 'social',
+  path: '/social_securitys',
   component: Layout,
+  name: 'social_securitys',
   children: [
     {
-      path: '', // 这里不用写
+      path: '',
       component: () => import('@/views/social'),
-      // 路由元信息
+      name: 'social_securitys',
       meta: {
         title: '社保',
         icon: 'table'
+
+      }
+    },
+    // 报表
+    {
+      path: 'detail/:id',
+      hidden: true,
+      component: () => import('@/views/social/detail'),
+      name: 'socialDetail',
+      meta: {
+        title: '社保'
+      }
+    },
+    // 历史归档
+    {
+      path: 'historicalArchiving',
+      hidden: true,
+      component: () => import('@/views/social/historical'),
+      name: 'socialHistorical',
+      meta: {
+        title: '历史归档'
+      }
+    },
+    // 月报表
+    {
+      path: 'monthStatement',
+      component: () => import('@/views/social/month'),
+      name: 'socialMonthStatement',
+      hidden: true,
+      meta: {
+        title: '当月报表'
       }
     }
   ]
 }
-

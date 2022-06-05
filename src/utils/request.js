@@ -4,7 +4,7 @@
  * @Autor: Marvin
  * @Date: 2022-05-15 13:35:28
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-17 19:05:41
+ * @LastEditTime: 2022-05-24 13:51:45
  */
 import axios from 'axios'
 import { Message } from 'element-ui'
@@ -15,7 +15,7 @@ import router from '@/router'
 const TimeOut = 3600 // 秒
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // 设置基础地址
-  timeout: 5000 // 设置超时时间
+  timeout: 15000 // 设置超时时间
 })
 
 // 请求拦截器

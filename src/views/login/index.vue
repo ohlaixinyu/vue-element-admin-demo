@@ -71,8 +71,8 @@ export default {
 
     return {
       loginForm: {
-        mobile: 'admin',
-        password: '111111'
+        mobile: '13800000003',
+        password: '123456'
       },
       loginRules: {
         mobile: [{ required: true, trigger: 'blur', message: '手机号不能为空' },

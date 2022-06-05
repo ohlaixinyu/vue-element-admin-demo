@@ -4,7 +4,7 @@
  * @Autor: Marvin
  * @Date: 2022-05-18 14:18:58
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-18 16:09:40
+ * @LastEditTime: 2022-06-04 17:14:30
  */
 // 导出员工的路由规则
 import Layout from '@/layout'
@@ -16,6 +16,7 @@ export default {
   children: [
     {
       path: '', // 这里不用写
+      name: 'departments',
       component: () => import('@/views/departments'),
       // 路由元信息
       meta: {

@@ -1,3 +1,11 @@
+<!--
+ * @Description:
+ * @Version: 2.0
+ * @Autor: Marvin
+ * @Date: 2022-05-15 13:35:28
+ * @LastEditors: Marvin
+ * @LastEditTime: 2022-05-19 13:48:27
+-->
 <script>
 export default {
   name: 'MenuItem',

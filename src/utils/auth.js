@@ -4,7 +4,7 @@
  * @Autor: Marvin
  * @Date: 2022-05-15 13:35:28
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-17 18:33:14
+ * @LastEditTime: 2022-05-19 15:22:17
  */
 import Cookies from 'js-cookie'
 
@@ -17,7 +17,12 @@ export function getToken() {
 }
 
 export function setToken(token) {
-  return Cookies.set(TokenKey, token)
+  const now = new Date()
+  // 一个小时过期
+  now.setMinutes(now.getHours + 1)
+  return Cookies.set(TokenKey, token, {
+    expires: now
+  })
 }
 
 export function removeToken() {

@@ -115,3 +115,21 @@ export function param2Obj(url) {
   })
   return obj
 }
+
+// 将列表的数据转换成树形数据  ==》》递归算法 自己调用自己
+// 先找根节点 pid为空的
+export function tranListToTreeData(list, rootValue) {
+  const arr = []
+  list.forEach(item => {
+    if (item.pid === rootValue) {
+      // 找到之后 再找他有没有子节点
+      const children = tranListToTreeData(list, item.id)
+      if (children.length) {
+        // 如果children的长度大于0 说明找到了子节点
+        item.children = children
+      }
+      arr.push(item) // 将内容加到数组中
+    }
+  })
+  return arr
+}

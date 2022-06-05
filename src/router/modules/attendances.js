@@ -1,28 +1,37 @@
-/*
- * @Description:
- * @Version: 2.0
- * @Autor: Marvin
- * @Date: 2022-05-18 14:18:58
- * @LastEditors: Marvin
- * @LastEditTime: 2022-05-18 16:09:29
- */
-// 导出员工的路由规则
+
 import Layout from '@/layout'
-export default {
-  // 路由规则
+
+const attendRouter = {
   path: '/attendances',
-  name: 'attendances',
   component: Layout,
+  name: 'attendances',
   children: [
     {
-      path: '', // 这里不用写
+      path: '',
       component: () => import('@/views/attendances'),
-      // 路由元信息
+      name: 'attendances',
       meta: {
         title: '考勤',
-        icon: 'skill'
+        icon: 'excel' }
+    },
+    {
+      path: 'archiving',
+      component: () => import('@/views/attendances/historical'),
+      name: 'archiving',
+      hidden: true,
+      meta: {
+        title: '归档'
+      }
+    },
+    {
+      path: 'report/:month',
+      component: () => import('@/views/attendances/report'),
+      name: 'reports',
+      hidden: true,
+      meta: {
+        title: '报表'
       }
     }
   ]
 }
-
+export default attendRouter

@@ -1,3 +1,11 @@
+/*
+ * @Description
+ * @Version: 2.0
+ * @Autor: Marvin
+ * @Date: 2022-05-15 13:35:28
+ * @LastEditors: Marvin
+ * @LastEditTime: 2022-06-05 09:52:28
+ */
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -15,6 +23,7 @@ import attendancesRouter from './modules/attendances'
 import salarysRouter from './modules/salarys'
 import settingRouter from './modules/setting'
 import socialRouter from './modules/social'
+import userRouter from './modules/user'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -43,14 +52,14 @@ import socialRouter from './modules/social'
 // 动态路由
 // 这里导出这个变量 后期做权限的时候会用到
 export const asyncRoutes = [
-  approvalsRouter,
   departmentsRouter,
   employeesRouter,
+  settingRouter,
   permissionRouter,
+  socialRouter,
   attendancesRouter,
   salarysRouter,
-  settingRouter,
-  socialRouter
+  approvalsRouter
 ]
 
 export const constantRoutes = [
@@ -72,19 +81,29 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: 'dashboard' }
     }]
   },
-
+  {
+    path: '/import',
+    component: Layout,
+    hidden: true, // 不显示在左侧菜单中
+    children: [{
+      path: '',
+      component: () => import('@/views/import')
+    }]
+  },
+  userRouter
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+
 ]
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
+  base: 'hr/',
   scrollBehavior: () => ({ y: 0 }),
-  routes: [...constantRoutes, ...asyncRoutes] // 临时合并动态路由
+  routes: [...constantRoutes] // 临时合并动态路由
 })
 
 const router = createRouter()

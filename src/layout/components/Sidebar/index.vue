@@ -1,3 +1,11 @@
+<!--
+ * @Description:
+ * @Version: 2.0
+ * @Autor: Marvin
+ * @Date: 2022-05-15 13:35:28
+ * @LastEditors: Marvin
+ * @LastEditTime: 2022-06-04 16:53:40
+-->
 <template>
   <div :class="{'has-logo':showLogo}">
     <logo v-if="showLogo" :collapse="isCollapse" />
@@ -12,7 +20,12 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
+        <sidebar-item
+          v-for="route in routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+        />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -28,11 +41,11 @@ export default {
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar', 'routes'
     ]),
-    routes() {
-      return this.$router.options.routes
-    },
+    // routes() {
+    //   return this.$router.options.routes
+    // },
     activeMenu() {
       const route = this.$route
       const { meta, path } = route

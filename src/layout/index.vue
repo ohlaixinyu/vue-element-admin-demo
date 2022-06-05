@@ -1,3 +1,11 @@
+<!--
+ * @Description:
+ * @Version: 2.0
+ * @Autor: Marvin
+ * @Date: 2022-05-15 13:35:28
+ * @LastEditors: Marvin
+ * @LastEditTime: 2022-06-04 17:36:36
+-->
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
@@ -5,6 +13,8 @@
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
+        <!-- 放置多页签组件 -->
+        <tags-view />
       </div>
       <app-main />
     </div>

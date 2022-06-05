@@ -4,11 +4,12 @@
  * @Autor: Marvin
  * @Date: 2022-05-15 13:35:28
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-17 18:34:16
+ * @LastEditTime: 2022-06-02 12:58:25
  */
 
 import { getToken, setToken, removeToken, setTimeStamp } from '@/utils/auth'
 import { login, getUserInfo, getUserDetailById } from '@/api/user.js'
+import { resetRouter } from '@/router/index'
 
 const state = {
   token: getToken(), // 设置token为共享状态
@@ -54,6 +55,11 @@ const actions = {
   logout(context) {
     context.commit('removeToken') // 不仅删除Vuex中的 还删除了缓存中的
     context.commit('removeUserInfo')
+    // 重置路由
+    resetRouter() // 重置路由
+    // 去设置权限模块下路由为初始状态
+    // mutaitons 名称 载荷 payload第三个参数 {root:true}调用根级的mutations或者action
+    context.commit('permission/setRoutes', [], { root: true })
   }
 }
 

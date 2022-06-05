@@ -4,7 +4,7 @@
  * @Autor: Marvin
  * @Date: 2022-05-15 13:35:28
  * @LastEditors: Marvin
- * @LastEditTime: 2022-05-17 16:11:14
+ * @LastEditTime: 2022-06-02 13:01:08
  */
 
 // 权限拦截 导航守卫
@@ -27,7 +27,15 @@ router.beforeEach(async(to, from, next) => {
     } else {
       // 如果当前vuex中有用户的id 已经有资料了 不需要再获取
       if (!store.getters.userId) {
-        await store.dispatch('user/getUserInfo')
+        const { roles } = await store.dispatch('user/getUserInfo')
+        // 筛选用户的可用路由
+        const routes = await store.dispatch('permission/filterRoutes', roles.menus) // routes就是筛选得到的动态路由
+        // 添加到路由表中
+        router.addRoutes([...routes, { path: '*', redirect: '/404', hidden: true }])
+        /**
+         * 注意 添加动态权限后 要用next(to.path) 这是一个已知的错误
+         * **/
+        next(to.path)
       }
       next()
     }
